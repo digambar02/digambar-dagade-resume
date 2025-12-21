@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Linear Regression as Geometry</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <!-- MathJax -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+
+<nav>
+    <a href="/">Home</a>
+    <a href="/blog/">Blog</a>
+</nav>
+
+<h1>Linear Regression as Geometry</h1>
+<p><em>Published: Jan 2025</em></p>
+<img src="../assets/images/linear-regression.jpg", class="post-image">
+<p class="image-credit">Image source: Pixabay</p>
+
+<p>
+Linear regression is often taught as a formula, but it is fundamentally
+a geometric projection problem.
+</p>
+
+<h2>The Core Equation</h2>
+
+$$
+\hat{\beta} = (X^TX)^{-1}X^Ty
+$$
+
+<p>
+This equation finds the point in column space of \(X\) closest to \(y\).
+</p>
+
+<h2>Key Insight</h2>
+<ul>
+    <li>Response vector lives in \( \mathbb{R}^n \)</li>
+    <li>Predictors span a subspace</li>
+    <li>OLS = orthogonal projection</li>
+</ul>
+
+</body>
+</html>
