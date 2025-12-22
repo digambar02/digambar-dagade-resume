@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Linear Regression as Geometry</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../assets/css/style.css">
     <!-- MathJax -->
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -15,13 +16,72 @@
 
 <h1>Linear Regression as Geometry</h1>
 <p><em>Published: Jan 2025</em></p>
-<img src="../assets/images/linear-regression.jpg", class="post-image">
+
+<img src="../assets/images/linear-regression.jpg" class="post-image">
 <p class="image-credit">Image source: Pixabay</p>
 
 <p>
-Linear regression is often taught as a formula, but it is fundamentally
-a geometric projection problem.
+Linear regression is usually introduced through formulas, normal equations,
+and matrix algebra. But at its core, <strong>linear regression is a geometric
+problem</strong>. Once you see it geometrically, concepts like least squares,
+residuals, multicollinearity, and overfitting become almost intuitive.
 </p>
+
+<p>
+This post explains linear regression not as a statistical recipe, but as a
+problem of <em>distance, angles, and projections</em> in high-dimensional space.
+</p>
+
+<hr>
+
+<h2>The Space We Are Working In</h2>
+
+<p>
+Suppose we have <strong>n observations</strong> and <strong>p predictors</strong>.
+Each predictor is a vector of length <em>n</em>. Together, these predictors form
+the design matrix:
+</p>
+
+$$
+X \in \mathbb{R}^{n \times p}
+$$
+
+<p>
+Each column of <code>X</code> represents a direction in an <strong>n-dimensional space</strong>.
+These directions span a flat geometric object known as the
+<strong>column space of X</strong>.
+</p>
+
+<p>
+This column space is not curved, spherical, or nonlinear.
+It is a <strong>flat subspace</strong> (a plane, or hyperplane) embedded inside
+\( \mathbb{R}^n \).
+</p>
+
+<hr>
+
+<h2>Where Does the Response Live?</h2>
+
+<p>
+The response variable \( y \) is also a vector in \( \mathbb{R}^n \).
+But in general, <strong>y does not lie inside the column space of X</strong>.
+</p>
+
+<p>
+This mismatch is the entire reason regression exists.
+If \( y \) already lay in the column space, we could explain it perfectly
+with a linear combination of predictors.
+</p>
+
+<p>
+Instead, linear regression asks a very precise geometric question:
+</p>
+
+<blockquote>
+Among all points in the column space of X, which one is closest to y?
+</blockquote>
+
+<hr>
 
 <h2>The Core Equation</h2>
 
@@ -30,15 +90,162 @@ $$
 $$
 
 <p>
-This equation finds the point in column space of \(X\) closest to \(y\).
+This equation does not "solve for coefficients" in an abstract sense.
+It computes the <strong>coordinates</strong> of a specific point inside the
+column space of <code>X</code>.
 </p>
 
-<h2>Key Insight</h2>
+<p>
+That point is:
+</p>
+
+$$
+\hat{y} = X\hat{\beta}
+$$
+
+<p>
+Geometrically, \( \hat{y} \) is the <strong>orthogonal projection</strong> of \( y \)
+onto the column space of \( X \).
+</p>
+
+<hr>
+
+<h2>Least Squares = Shortest Distance</h2>
+
+<p>
+The residual vector is:
+</p>
+
+$$
+r = y - \hat{y}
+$$
+
+<p>
+This residual is not arbitrary.
+It satisfies a strong geometric property:
+</p>
+
+$$
+X^T r = 0
+$$
+
+<p>
+Which means the residual is <strong>perpendicular to every column of X</strong>.
+</p>
+
+<p>
+So when we say “least squares,” what we really mean is:
+</p>
+
 <ul>
-    <li>Response vector lives in \( \mathbb{R}^n \)</li>
-    <li>Predictors span a subspace</li>
-    <li>OLS = orthogonal projection</li>
+    <li>Draw a perpendicular from \( y \) to the column space of \( X \)</li>
+    <li>The foot of that perpendicular is \( \hat{y} \)</li>
+    <li>The squared length of that perpendicular is minimized</li>
 </ul>
+
+<p>
+This is why ordinary least squares is a projection problem,
+not an optimization trick.
+</p>
+
+<hr>
+
+<h2>Understanding Coefficients Geometrically</h2>
+
+<p>
+Each regression coefficient answers a subtle geometric question:
+</p>
+
+<blockquote>
+How much do we move along this predictor's direction to reach the projection point?
+</blockquote>
+
+<p>
+The coefficients are not properties of \( y \) alone.
+They depend on:
+</p>
+
+<ul>
+    <li>The angles between predictor vectors</li>
+    <li>The scale of each predictor</li>
+    <li>The orientation of the column space</li>
+</ul>
+
+<p>
+This is why multicollinearity makes coefficients unstable:
+when predictor directions are nearly parallel,
+the geometry becomes ill-conditioned.
+</p>
+
+<hr>
+
+<h2>High-Dimensional Intuition (Yes, 100 Dimensions)</h2>
+
+<p>
+Even in 100-dimensional space, the story is unchanged.
+</p>
+
+<ul>
+    <li>Each predictor is a direction</li>
+    <li>Their linear combinations form a flat surface</li>
+    <li>The response vector sits somewhere off that surface</li>
+    <li>Regression drops a perpendicular onto it</li>
+</ul>
+
+<p>
+No matter how many dimensions we add,
+linear regression never bends the space.
+It only <strong>projects</strong>.
+</p>
+
+<hr>
+
+<h2>Key Takeaways</h2>
+
+<ul>
+    <li>The response vector lives in \( \mathbb{R}^n \)</li>
+    <li>Predictors span a flat subspace</li>
+    <li>OLS is an orthogonal projection</li>
+    <li>Residuals are perpendicular to predictors</li>
+    <li>Coefficients are geometric coordinates</li>
+</ul>
+
+<p>
+If you understand this geometry,
+you are no longer memorizing regression.
+You are <strong>seeing</strong> it.
+</p>
+
+<h2>References & Further Reading</h2>
+
+<ol>
+    <li>
+        Montgomery, D. C., Peck, E. A., & Vining, G. G.
+        <em>Introduction to Linear Regression Analysis</em>, 5th Edition.
+        Wiley.
+    </li>
+    <li>
+        Strang, G.
+        <em>Linear Algebra and Its Applications</em>.
+        Cengage Learning.
+    </li>
+    <li>
+        Hastie, T., Tibshirani, R., & Friedman, J.
+        <em>The Elements of Statistical Learning</em>.
+        Springer.
+    </li>
+    <li>
+        Davidson, K., & Szarek, S.
+        <em>Local operator theory, random matrices, and Banach spaces</em>.
+    </li>
+</ol>
+
+
+<p class="post-footer">
+If this post helped you see linear regression differently,
+consider sharing it or bookmarking it for future reference.
+</p>
+
 
 </body>
 </html>
