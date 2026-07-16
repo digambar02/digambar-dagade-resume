@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fraud Score Thresholds with Cost-Based Tuning</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav>
+    <a href="/">Home</a>
+    <a href="/blog/">Articles</a>
+</nav>
+
+<h1>Fraud Score Thresholds with Cost-Based Tuning</h1>
+<p><em>Published: Jul 2026</em></p>
+
+<p>
+A model score becomes useful only after selecting a decision threshold.
+In fraud analytics, threshold selection should minimize expected business loss.
+</p>
+
+<h2>Expected Cost Framework</h2>
+
+<p>
+Let the threshold be \(t\). We can write expected cost as:
+</p>
+
+$$
+C(t) = c_{FP} \cdot FP(t) + c_{FN} \cdot FN(t)
+$$
+
+<p>
+The best threshold is:
+</p>
+
+$$
+t^* = \arg\min_t C(t)
+$$
+
+<p>
+When missed fraud is expensive, \(c_{FN} \gg c_{FP}\), so the operating point shifts toward higher recall.
+</p>
+
+<h2>Operational Constraint</h2>
+
+<p>
+If analysts can review at most \(K\) alerts/day, then choose the highest-value threshold satisfying:
+</p>
+
+$$
+\text{Alerts}(t) \le K
+$$
+
+<p>
+This links model tuning directly to team capacity and business value.
+</p>
+
+</body>
+</html>

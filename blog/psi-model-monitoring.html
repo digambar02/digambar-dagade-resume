@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PSI for Fraud Model Monitoring</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav>
+    <a href="/">Home</a>
+    <a href="/blog/">Articles</a>
+</nav>
+
+<h1>PSI for Fraud Model Monitoring</h1>
+<p><em>Published: Jul 2026</em></p>
+
+<p>
+Population Stability Index (PSI) is a simple way to measure score distribution drift
+between a reference period and a current period.
+</p>
+
+<h2>PSI Formula</h2>
+
+<p>
+For score bins \(i = 1,2,\dots,n\):
+</p>
+
+$$
+\text{PSI} = \sum_{i=1}^{n} (A_i - E_i) \ln\left(\frac{A_i}{E_i}\right)
+$$
+
+<p>
+where \(E_i\) is the expected (reference) proportion and \(A_i\) is the actual (current) proportion.
+</p>
+
+<h2>Interpretation</h2>
+
+<ul>
+    <li>\(\text{PSI} < 0.1\): low drift</li>
+    <li>\(0.1 \le \text{PSI} < 0.25\): moderate drift</li>
+    <li>\(\text{PSI} \ge 0.25\): significant drift</li>
+</ul>
+
+<p>
+PSI does not replace performance metrics, but it is a strong early warning signal
+for model and data pipeline shifts.
+</p>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Precision and Recall in Fraud Detection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav>
+    <a href="/">Home</a>
+    <a href="/blog/">Articles</a>
+</nav>
+
+<h1>Precision and Recall in Fraud Detection</h1>
+<p><em>Published: Jul 2026</em></p>
+
+<p>
+Fraud detection is usually an imbalanced classification problem. Accuracy can look strong,
+but business impact depends more on <strong>precision</strong> and <strong>recall</strong>.
+</p>
+
+<h2>Core Metrics</h2>
+
+<p>
+Precision answers: among alerts raised, how many are truly fraud?
+</p>
+
+$$
+\text{Precision} = \frac{TP}{TP + FP}
+$$
+
+<p>
+Recall answers: among all real fraud events, how many were detected?
+</p>
+
+$$
+\text{Recall} = \frac{TP}{TP + FN}
+$$
+
+<p>
+To balance both, teams often track the harmonic mean:
+</p>
+
+$$
+F_1 = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}
+$$
+
+<h2>Practical Note</h2>
+
+<p>
+If recall is too low, fraud escapes. If precision is too low, analysts get overloaded.
+A good threshold is the point where risk capture and investigation capacity are both sustainable.
+</p>
+
+</body>
+</html>
