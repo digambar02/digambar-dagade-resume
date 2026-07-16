@@ -21,23 +21,6 @@ body {
     background: #ffffff;
 }
 
-/* =====================================
-   IMAGES
-   ===================================== */
-
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 1.5rem auto;
-}
-
-.post-image {
-    max-width: 100%;
-    border-radius: 8px;
-}
-
-
 .profile-header {
     text-align: center;
     margin-bottom: 2.5rem;
@@ -210,18 +193,6 @@ pre {
 }
 
 /* =====================================
-   IMAGE CREDIT
-   ===================================== */
-
-.image-credit {
-    font-size: 0.85em;
-    color: #6b7280;
-    text-align: center;
-    margin-top: -1rem;
-    margin-bottom: 1.5rem;
-}
-
-/* =====================================
    POST FOOTER
    ===================================== */
 
@@ -290,6 +261,12 @@ mjx-container {
 
     pre {
         font-size: 0.85rem;
+    }
+
+    p,
+    li {
+        text-align: justify;
+        text-justify: inter-word;
     }
 }
 
